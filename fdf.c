@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 03:18:19 by lmenigau          #+#    #+#             */
-/*   Updated: 2016/12/23 09:54:47 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/01/12 20:07:05 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int		draw_rectangle(int (*rect)[1000], int x, int y, int color)
 	}
 	return (0);
 }
-
 
 int		ft_abs(int n)
 {
@@ -66,24 +65,30 @@ int		parse_file(int argc, char **argv, int ***map)
 	i = 0;
 	while (get_next_line(fd, &line) == 1)
 	{
-		*map[i] = malloc(sizeof (***map) * ft_strlen(line));
+		(*map)[i] = malloc(sizeof (***map) * ft_strlen(line));
 		tab = ft_strsplit(line, ' ');
 		j = 0;
 		while (tab[j])
 		{
-			*map[i][j] = ft_atoi(tab[j]);
+			(*map)[i][j] = ft_atoi(tab[j]);
 			j++;
 		}
 		i++;
 	}
-	*map[i] = NULL;
+	(*map)[i] = NULL;
 	return (j);
+}
+
+void	print_map(int **map)
+{
+
 }
 
 t_vec2	 **project(int **map, int map_size)
 {
 	int		x;
 	int		y;
+	int		**t_vec2;
 
 	y = 0;
 	while (map[y] != NULL)
@@ -114,13 +119,10 @@ int		main(int argc, char **argv)
 	window = mlx_new_window(mlx_ptr, 1920, 1080, "fdf");
 	mlx_key_hook(window, key_hook, NULL);
 	img_ptr = mlx_new_image(mlx_ptr, 1000, 1000);
-	bits_per_pixel = 32;
-	size_line = 1000;
-	endian = 1;
 	imgmem = (int (*)[1000])mlx_get_data_addr(img_ptr, &bits_per_pixel, &size_line, &endian);
 	variousttest(imgmem);
-	//map_size = parse_file(argc, argv, &map);
-	//proj = project(map, map_size);
+	map_size = parse_file(argc, argv, &map);
+	proj = project(map, map_size);
 	mlx_put_image_to_window(mlx_ptr, window, img_ptr,0, 0);
 	mlx_mouse_hook(window, mouse_hook, NULL);
 	mlx_loop(mlx_ptr);
