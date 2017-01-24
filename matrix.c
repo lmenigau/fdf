@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 14:57:22 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/01/24 01:32:39 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/01/24 16:17:42 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,34 +15,46 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct s_tmp {
-	t_m44	mat;
+typedef struct	s_tmp
+{
+	t_m44		mat;
 }				t_tmp;
 
-t_m44p	mat_mult(int b, t_m44 *mat)
+void	mat_mult(t_m44p res, t_m44p left, t_m44p right)
 {
-	t_m44p	mat2;
-	struct	s_tmp *tmp;
-	int		n;
+		int		i;
+		int		j;
 
-	n = 4;
-	tmp = (struct s_tmp) {{{0, 0, 0, 0},
-						  {0, n * b, 0, 0},
-						  {0, 0, 0, 0},
-						  {0, 0, 0, 0}}};
-	*mat = tmp;
-	//mat2 = malloc(sizeof(t_m44));
-	//memcpy(mat2, mat, sizeof(t_m44));
-	return (mat2);
+		i = 0;
+		while (i < 4)
+		{
+			j = 0;
+			while (j < 4)
+			{
+			}
+		}
 }
+
 
 int		main(void)
 {
-	t_m44 mat;
+	t_m44p	mat;
+	t_m44	res;
+	int		n;
 
-	mat_mult(3, &mat);
-	printf("%f\n", mat.mat[1][1]);
+	n = 4;
+	mat = (t_m44)	{{0, 0, 0, 0},
+					{0, 0 , 0, 0},
+					{0, 0, 0, 0},
+					{0, 0, 0, 0}};
+	mat = (t_m44)	{{0, 0, 0, 0},
+					{0, 0 , 0, 0},
+					{0, 0, 0, 0},
+					{0, 0, 0, 0}};
+	//mat_mult(3, &mat);
+	printf("%f\n", mat[1][1]);
 	printf("%f\n", 56546.2695);
-	printf("%f\n", mat.mat[1][1]);
+	printf("%f\n", mat[1][1]);
 	printf("%zu", sizeof(float[4][4]));
 }
+

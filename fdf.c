@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 03:18:19 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/01/19 13:09:17 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/01/24 06:55:50 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	variousttest(int (*imgmem)[1000])
 	plotline(imgmem, 500, 0, 0, 300);
 }
 
-int		parse_file(int argc, char **argv, int ***map)
+int		parse_file(int argc, char **argv, t_vec3 ***map)
 {
 	int		fd;
 	char	*line;
@@ -70,7 +70,9 @@ int		parse_file(int argc, char **argv, int ***map)
 		j = 0;
 		while (tab[j])
 		{
-			(*map)[i][j] = ft_atoi(tab[j]);
+			(*map)[i][j].z = ft_atoi(tab[j]);
+			(*map)[i][j].x = j;
+			(*map)[i][j].y = i;
 			j++;
 		}
 		i++;
@@ -79,12 +81,13 @@ int		parse_file(int argc, char **argv, int ***map)
 	return (j);
 }
 
-void	print_map(int **map)
+void	debugtest(t_gstate *gstate)
 {
-
+	printf("%d\n", gstate->size_line);
+	variousttest(gstate->imgmem);
 }
 
-t_vec2	 **project(int **map, int map_size)
+t_vec3	 **project(t_vec3 **map, int map_size)
 {
 	int		x;
 	int		y;
@@ -100,33 +103,24 @@ t_vec2	 **project(int **map, int map_size)
 		}
 		y++;
 	}
+	return (map);
 }
 
 int		main(int argc, char **argv)
 {
-	int		(*imgmem)[1000];
-	int		bits_per_pixel;
-	int		size_line;
-	int		endian;
-	void	*mlx_ptr;
-	void	*window;
-	void	*img_ptr;
-	int		**map;
-	int		map_size;
-	t_vec2	**proj;
+	t_vec3	**proj;
+	t_gstate gstate;
 
-	mlx_ptr = mlx_init();
-	window = mlx_new_window(mlx_ptr, 1920, 1080, "fdf");
-	mlx_key_hook(window, key_hook, NULL);
-	img_ptr = mlx_new_image(mlx_ptr, 1000, 1000);
-	imgmem = (int (*)[1000])mlx_get_data_addr(img_ptr, &bits_per_pixel, &size_line, &endian);
-	printf("%d\n", size_line);
-	variousttest(imgmem);
-	map_size = parse_file(argc, argv, &map);
-	proj = project(map, map_size);
-	mlx_put_image_to_window(mlx_ptr, window, img_ptr,0, 0);
-	mlx_mouse_hook(window, mouse_hook, NULL);
-	mlx_hook(window, 6, 0, motion_hook, NULL);
-	mlx_loop(mlx_ptr);
+	gstate.mlx_ptr = mlx_init();
+	gstate.window = mlx_new_window(gstate.mlx_ptr, 1920, 1080, "fdf");
+	mlx_key_hook(gstate.window, key_hook, NULL);
+	gstate.img_ptr = mlx_new_image(gstate.mlx_ptr, 1000, 1000);
+	gstate.imgmem = (int (*)[1000])mlx_get_data_addr(gstate.img_ptr, &gstate.bits_per_pixel, &gstate.size_line, &gstate.endian);
+	gstate.map_size = parse_file(argc, argv, &gstate.map);
+	proj = project(gstate.map, gstate.map_size);
+	mlx_put_image_to_window(gstate.mlx_ptr, gstate.window, gstate.img_ptr,0, 0);
+	mlx_mouse_hook(gstate.window, mouse_hook, NULL);
+	mlx_hook(gstate.window, 6, 0, motion_hook, NULL);
+	mlx_loop(gstate.mlx_ptr);
 	return (0);
 }
