@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/20 23:51:35 by lmenigau          #+#    #+#             */
-/*   Updated: 2016/12/21 00:06:47 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/01/19 13:09:04 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,10 @@ int		mouse_hook(int button, int x, int y, void *param)
 	printf("button: %d, x: %d, y: %d\n", button, x, y);
 	return (0);
 }
+
+int		motion_hook(int button, int x, int y, void *param)
+{
+		printf("button: %d, x: %d, y: %d\n", button, x, y);
+			return (0);
+}
+

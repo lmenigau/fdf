@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/20 23:53:20 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/01/12 18:12:14 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/01/19 13:09:00 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int				key_hook(int keycode, void *param);
 int				expose_hook(void *param);
 int				loop_hook(void *param);
 int				mouse_hook(int button, int x, int y, void *param);
+int				motion_hook(int button, int x, int y, void *param);
 int				ft_abs(int n);
 
 

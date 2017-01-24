@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 03:18:19 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/01/12 20:07:05 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/01/19 13:09:17 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,11 +120,13 @@ int		main(int argc, char **argv)
 	mlx_key_hook(window, key_hook, NULL);
 	img_ptr = mlx_new_image(mlx_ptr, 1000, 1000);
 	imgmem = (int (*)[1000])mlx_get_data_addr(img_ptr, &bits_per_pixel, &size_line, &endian);
+	printf("%d\n", size_line);
 	variousttest(imgmem);
 	map_size = parse_file(argc, argv, &map);
 	proj = project(map, map_size);
 	mlx_put_image_to_window(mlx_ptr, window, img_ptr,0, 0);
 	mlx_mouse_hook(window, mouse_hook, NULL);
+	mlx_hook(window, 6, 0, motion_hook, NULL);
 	mlx_loop(mlx_ptr);
 	return (0);
 }
