@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 14:57:22 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/01/24 16:17:42 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/01/26 11:40:51 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef struct	s_tmp
 	t_m44		mat;
 }				t_tmp;
 
-void	mat_mult(t_m44p res, t_m44p left, t_m44p right)
+void	mat_mult(t_m44p res, t_m44p l, t_m44p r)
 {
 		int		i;
 		int		j;
@@ -31,7 +31,11 @@ void	mat_mult(t_m44p res, t_m44p left, t_m44p right)
 			j = 0;
 			while (j < 4)
 			{
+				res[i][j] = l[i][0] * r[0][j] + l[i][1] * r[1][j] + l[i][2] *
+					r[2][j] + l[i][3] * r[3][j];
+				j++;
 			}
+			i++;
 		}
 }
 
