@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 03:18:19 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/01/27 08:26:36 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/01/27 11:25:53 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,83 @@ int		parse_file(int argc, char **argv, t_vec3 ***map)
 	return (j);
 }
 
-
-t_vec2	point_transform(t_vec3 pt, t_m44p m, t_vec2 point)
+int		open_file(int argc, char **argv)
 {
-	point.x = pt.x * m[0][0] + pt.y * m[1][0] + pt.z * m[2][0] + m[3][0];
-	point.y = pt.x * m[0][1] + pt.y * m[1][1] + pt.z * m[2][1] + m[3][1];
+	int		fd;
 
-	return point;
+	if (argc < 2)
+		return (0);
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+		return (0);
+	return(1);
 }
+
+int		count_word(char *s, char c)
+{
+	size_t	i;
+	size_t	wc;
+
+	i = 0;
+	wc = 0;
+	while (s[i] != '\0')
+	{
+		while (s[i] != '\0' && s[i] == c)
+			i++;
+		if (s[i] == '\0')
+			break ;
+		while (s[i] != '\0' && s[i] != c)
+			i++;
+		wc++;
+	}
+	return (wc);
+}
+
+int		*parse_number(char *s)
+{
+	int		count;
+	int		*tab;
+	int		i;
+	int		j;
+
+	count = count_word(s, ' ') + 2;
+	if ((tab = malloc(sizeof (*tab) * count )) == NULL)
+			return (NULL);
+	i = 0;
+	j = 0;
+	tab[0] = count;
+	while (i < count)
+	{
+		while(s[j] && s[j] == ' ')
+			j++;
+		while ((s[j] && s[j] <= 0 && s[j] >= 9) || s[j] == '-')
+			j++;
+		tab[i] = ft_atoi(&s[j]);
+	}
+	return (tab);
+}
+
+int		load_file(int fd)
+{
+	int		ret;
+	int		i;
+	char	*line;
+	t_list	*head;
+	t_list	*current;
+
+	head = malloc(sizeof (*head));
+	current = head;
+	while ((ret = get_next_line(fd, &line)) == 1)
+	{
+
+		free(line);
+		i++;
+	}
+	if (ret == -1)
+		return (0);
+	return(1);
+}
+
 
 t_vec2	 **project(t_vec3 **map, int map_size)
 {

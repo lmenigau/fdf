@@ -6,11 +6,11 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 14:57:22 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/01/26 21:49:05 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/01/27 10:02:10 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "matrix.h"
+#include "fdf.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -51,6 +51,14 @@ void	print_mat(t_m44p mat)
 		printf("\n");
 		i++;
 	}
+}
+
+t_vec2	point_transform(t_vec3 pt, t_m44p m, t_vec2 point)
+{
+	point.x = pt.x * m[0][0] + pt.y * m[1][0] + pt.z * m[2][0] + m[3][0];
+	point.y = pt.x * m[0][1] + pt.y * m[1][1] + pt.z * m[2][1] + m[3][1];
+
+	return point;
 }
 
 int		main(void)
