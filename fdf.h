@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/20 23:53:20 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/01/24 06:28:49 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/01/27 02:20:00 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 # include "libft/libft.h"
 # include "get_next_line.h"
+# include "matrix.h"
 
 typedef struct	s_vec2
 {

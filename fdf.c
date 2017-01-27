@@ -6,48 +6,18 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 03:18:19 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/01/24 06:55:50 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/01/27 08:26:36 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		draw_rectangle(int (*rect)[1000], int x, int y, int color)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	while (i < y)
-	{
-		j = 0;
-		while (j < x)
-		{
-			rect[i][j] = color;
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
 
 int		ft_abs(int n)
 {
 	if (n < 0)
 		return (-n);
 	return (n);
-}
-
-void	variousttest(int (*imgmem)[1000])
-{
-	imgmem[50][50] = 0x00F1FFFF;
-	plotline(imgmem, 400, 10, 130, 200);
-	plotline(imgmem, 20, 10, 300, 130);
-	plotline(imgmem, 100, 10, 300, 130);
-	plotline(imgmem, 100, 10, 130, 300);
-	plotline(imgmem, 0, 0, 300, 300);
-	plotline(imgmem, 500, 0, 0, 500);
-	plotline(imgmem, 500, 0, 0, 300);
 }
 
 int		parse_file(int argc, char **argv, t_vec3 ***map)
@@ -81,13 +51,16 @@ int		parse_file(int argc, char **argv, t_vec3 ***map)
 	return (j);
 }
 
-void	debugtest(t_gstate *gstate)
+
+t_vec2	point_transform(t_vec3 pt, t_m44p m, t_vec2 point)
 {
-	printf("%d\n", gstate->size_line);
-	variousttest(gstate->imgmem);
+	point.x = pt.x * m[0][0] + pt.y * m[1][0] + pt.z * m[2][0] + m[3][0];
+	point.y = pt.x * m[0][1] + pt.y * m[1][1] + pt.z * m[2][1] + m[3][1];
+
+	return point;
 }
 
-t_vec3	 **project(t_vec3 **map, int map_size)
+t_vec2	 **project(t_vec3 **map, int map_size)
 {
 	int		x;
 	int		y;
@@ -108,7 +81,7 @@ t_vec3	 **project(t_vec3 **map, int map_size)
 
 int		main(int argc, char **argv)
 {
-	t_vec3	**proj;
+	t_vec2	**proj;
 	t_gstate gstate;
 
 	gstate.mlx_ptr = mlx_init();
