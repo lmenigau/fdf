@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 03:18:19 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/01/27 11:25:53 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/01/27 11:40:24 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,33 +119,16 @@ int		load_file(int fd)
 	current = head;
 	while ((ret = get_next_line(fd, &line)) == 1)
 	{
-
+		current->content = parse_number(line);
+		current->next = malloc(sizeof (*current));
+		current = current->next;
 		free(line);
 		i++;
 	}
+	current->next = NULL;
 	if (ret == -1)
 		return (0);
 	return(1);
-}
-
-
-t_vec2	 **project(t_vec3 **map, int map_size)
-{
-	int		x;
-	int		y;
-	int		**t_vec2;
-
-	y = 0;
-	while (map[y] != NULL)
-	{
-		x = 0;
-		while (x < map_size)
-		{
-			x++;
-		}
-		y++;
-	}
-	return (map);
 }
 
 int		main(int argc, char **argv)
