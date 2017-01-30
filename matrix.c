@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 14:57:22 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/01/27 10:02:10 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/01/27 12:23:59 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_vec2	point_transform(t_vec3 pt, t_m44p m, t_vec2 point)
 	return point;
 }
 
-int		main(void)
+/*int		main(void)
 {
 	t_m44p	mat;
 	t_m44p	mat2;
@@ -84,4 +84,4 @@ int		main(void)
 	printf("%f\n", 56546.2695);
 	printf("%f\n", mat[1][1]);
 	printf("%zu", sizeof(float[4][4]));
-}
+}*/
