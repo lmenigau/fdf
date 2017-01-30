@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/20 23:53:20 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/01/27 02:20:00 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/01/30 18:05:54 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct	s_gstate
 	void		*img_ptr;
 	t_vec3		**map;
 	int			map_size;
+	t_list		*head;
 }				t_gstate;
 
 void			plotline(int (*img)[1000], int x0, int y0, int x1, int y1);
