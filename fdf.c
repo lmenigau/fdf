@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 03:18:19 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/01/31 09:46:49 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/01/31 14:15:58 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,9 +148,9 @@ t_m44st	matrix_build(int line_count, int **map, t_gstate *gstate)
 						{0, 1, 0, 0},
 						{0, 0, 1, 0},
 						{-map[0][0] / 2, -line_count / 2, 0, 1}},
-					{	{50, 0, 0, 0},
-						{0, 50, 0, 0},
-						{0, 0, 10, 0},
+					{	{WIN_HEIGHT/(float)line_count, 0, 0, 0},
+						{0,WIN_HEIGHT/(float)line_count, 0, 0},
+						{0, 0, 1, 0},
 						{0, 0, 0, 1}},
 //					{	{cos(M_PI/6), 0, -sin(M_PI/6), 0},
 //						{0, 1, 0, 0},
@@ -161,8 +161,8 @@ t_m44st	matrix_build(int line_count, int **map, t_gstate *gstate)
 						{0, 0, 1, 0},
 						{0, 0, 0, 1}},
 					{	{1, 0, 0, 0},
-						{0, cos(gstate->angle.x), sin(gstate->angle.x), 0},
-						{0, -sin(gstate->angle.x), cos(gstate->angle.x), 0},
+						{0, cos(gstate->angle.x), -sin(gstate->angle.x), 0},
+						{0, sin(gstate->angle.x), cos(gstate->angle.x), 0},
 						{0, 0, 0, 1}},
 					{	{1, 0, 0, 0},
 						{0, 1, 0, 0},
