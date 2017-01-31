@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 03:18:19 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/01/30 19:01:29 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/01/31 02:34:47 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,43 @@ void	print_map(int	**map, int line_count)
 	}
 }
 
+t_m44st	matrix_build(int line_count, int **map)
+{
+	t_m44	*mat_arr;
+
+	mat_arr = (t_m44[2]){
+					{	{1, 0, 0, map[0][0] / 2},
+						{0, 1, 0, line_count / 2},
+						{0, 0, 1, 0},
+						{0, 0, 0, 1}},
+					{	{1, 0, 0, WIN_WIDTH / 2},
+						{0, cos(30), sin(30), WIN_HEIGHT / 2},
+						{0, -sin(30), cos(30), 0},
+						{0, 0, 0, 1}}
+					};
+	return mat_array_mult(mat_arr, 2);
+}
+
+void	map_render(int **map, int line_count)
+{
+	t_m44p	matrix;
+	int		i;
+	int		j;
+
+	matrix = matrix_build(line_count, map).mat;
+	i = 0;
+	while (i < line_count)
+	{
+		j = 1;
+		while(j < matrix[i][0])
+		{
+			j++;
+		}
+		i++;
+	}
+
+}
+
 void	variousttest(int (*imgmem)[1000]);
 int		main(int argc, char **argv)
 {
@@ -149,17 +186,17 @@ int		main(int argc, char **argv)
 	int		**map;
 	fd = -1;
 	gstate.mlx_ptr = mlx_init();
-	gstate.window = mlx_new_window(gstate.mlx_ptr, 1920, 1080, "fdf");
+	gstate.window = mlx_new_window(gstate.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "fdf");
 	mlx_key_hook(gstate.window, key_hook, NULL);
-	gstate.img_ptr = mlx_new_image(gstate.mlx_ptr, 1000, 1000);
+	gstate.img_ptr = mlx_new_image(gstate.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	gstate.imgmem = (int (*)[1000])mlx_get_data_addr(gstate.img_ptr, &gstate.bits_per_pixel, &gstate.size_line, &gstate.endian);
 	if ((fd = open_file(argc, argv)) == -1)
 		return (0);;
 	line_count = load_file(&gstate, fd);
 	map = flaten_list(gstate.head, line_count);
-	print_map(map, line_count);
+	map_render(map, line_count);
 	return (0);
-	variousttest(gstate.imgmem);
+//	print_map(map, line_count);
 	mlx_put_image_to_window(gstate.mlx_ptr, gstate.window, gstate.img_ptr,0, 0);
 	mlx_mouse_hook(gstate.window, mouse_hook, NULL);
 	mlx_hook(gstate.window, 6, 0, motion_hook, NULL);

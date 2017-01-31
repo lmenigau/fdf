@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/20 23:53:20 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/01/30 18:05:54 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/01/31 01:05:15 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 # include "libft/libft.h"
 # include "get_next_line.h"
 # include "matrix.h"
+
+#define		WIN_WIDTH	1920
+#define		WIN_HEIGHT	1080
 
 typedef struct	s_vec2
 {
@@ -65,6 +68,5 @@ int				loop_hook(void *param);
 int				mouse_hook(int button, int x, int y, void *param);
 int				motion_hook(int button, int x, int y, void *param);
 int				ft_abs(int n);
-
 
 #endif

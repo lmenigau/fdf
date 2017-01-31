@@ -6,16 +6,11 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/20 23:52:30 by lmenigau          #+#    #+#             */
-/*   Updated: 2016/12/21 05:33:08 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/01/31 02:41:53 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	plotline(int (*img)[1000], int x0, int y0, int x1, int y1)
-{
-		plotline_octant(img, x0, y0, x1, y1);
-}
 
 void plot(int (*img)[1000], int x, int y, int fsp)
 {
@@ -25,7 +20,19 @@ void plot(int (*img)[1000], int x, int y, int fsp)
 	y = ft_abs(y);
 	img[y][x] = 0x00FFFFFF;
 }
+void	plotline(int (*img)[1000], int x0, int y0, int x1, int y1)
+{
+		plotline_octant(img, x0, y0, x1, y1);
+}
 
+void	plotline_octant_vec(int (*img)[WIN_WIDTH], t_vec2 p0, t_vec2 p1)
+{
+}
+
+void	plotline_vec(int (*img)[WIN_WIDTH], t_vec2 p0, t_vec2 p1)
+{
+		plotline_octant_vec(img, p0, p1);
+}
 void	plotline_octant(int (*img)[1000], int x0, int y0, int x1, int y1)
 {
 	int		dx;
