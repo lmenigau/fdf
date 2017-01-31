@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 14:57:22 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/01/31 02:54:58 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/01/31 09:05:03 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ t_m44st	mat_array_mult(t_m44 *mat_array, int length)
 	while (i < length)
 	{
 		acc = mat_mult(acc.mat, mat_array[i]);
+		i++;
 	}
 	return (acc);
 }

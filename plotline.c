@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/20 23:52:30 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/01/31 03:36:58 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/01/31 07:49:12 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,14 @@ void	plotline_octant_vec(int (*img)[WIN_WIDTH], t_vec2 p0, t_vec2 p1, int fsp)
 void	plotline_vec(int (*img)[WIN_WIDTH], t_vec2 p0, t_vec2 p1)
 {
 	int		fsp;
+	t_vec2 swap;
 
+
+	if (p0.y > p1.y)
+	{
+		p0.y = -p0.y;
+		p1.y = -p1.y;
+	}
 	fsp = 0;
 	if (p0.x > p1.x)
 	{
@@ -67,10 +74,7 @@ void	plotline_vec(int (*img)[WIN_WIDTH], t_vec2 p0, t_vec2 p1)
 		ft_swap(&p1.x, &p1.y);
 		fsp = 1;
 	}
-	if (p0.x > p1.x && p0.y > p1.y)
-		plotline_octant_vec(img, p0, p1, fsp);
-	else
-		plotline_octant_vec(img, p1, p0, fsp);
+	plotline_octant_vec(img, p0, p1, fsp);
 }
 
 void	plotline_octant(int (*img)[WIN_WIDTH], int x0, int y0, int x1, int y1)
