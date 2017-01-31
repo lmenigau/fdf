@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 14:57:22 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/01/31 02:34:31 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/01/31 02:54:58 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	print_mat(t_m44p mat)
 		j = 0;
 		while (j < 4)
 		{
-			printf("%4.0f ", mat[i][j]);
+			printf("%4.2f ", mat[i][j]);
 			j++;
 		}
 		printf("\n");

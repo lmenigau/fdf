@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 03:18:19 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/01/31 02:34:47 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/01/31 03:15:46 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ t_m44st	matrix_build(int line_count, int **map)
 	mat_arr = (t_m44[2]){
 					{	{1, 0, 0, map[0][0] / 2},
 						{0, 1, 0, line_count / 2},
-						{0, 0, 1, 0},
+						{0, 0, 1, 1},
 						{0, 0, 0, 1}},
 					{	{1, 0, 0, WIN_WIDTH / 2},
 						{0, cos(30), sin(30), WIN_HEIGHT / 2},
@@ -176,7 +176,8 @@ void	map_render(int **map, int line_count)
 
 }
 
-void	variousttest(int (*imgmem)[1000]);
+void	variousttest(int (*imgmem)[WIN_WIDTH]);
+void	variousttest_vec(int (*imgmem)[WIN_WIDTH]);
 int		main(int argc, char **argv)
 {
 	t_gstate gstate;
@@ -189,13 +190,14 @@ int		main(int argc, char **argv)
 	gstate.window = mlx_new_window(gstate.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "fdf");
 	mlx_key_hook(gstate.window, key_hook, NULL);
 	gstate.img_ptr = mlx_new_image(gstate.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
-	gstate.imgmem = (int (*)[1000])mlx_get_data_addr(gstate.img_ptr, &gstate.bits_per_pixel, &gstate.size_line, &gstate.endian);
+	gstate.imgmem = (int (*)[WIN_WIDTH])mlx_get_data_addr(gstate.img_ptr, &gstate.bits_per_pixel, &gstate.size_line, &gstate.endian);
 	if ((fd = open_file(argc, argv)) == -1)
 		return (0);;
 	line_count = load_file(&gstate, fd);
 	map = flaten_list(gstate.head, line_count);
-	map_render(map, line_count);
-	return (0);
+	//map_render(map, line_count);
+	variousttest(gstate.imgmem);
+	variousttest_vec(gstate.imgmem);
 //	print_map(map, line_count);
 	mlx_put_image_to_window(gstate.mlx_ptr, gstate.window, gstate.img_ptr,0, 0);
 	mlx_mouse_hook(gstate.window, mouse_hook, NULL);

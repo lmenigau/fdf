@@ -6,13 +6,13 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/27 08:22:22 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/01/27 08:23:54 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/01/31 03:14:38 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		draw_rectangle(int (*rect)[1000], int x, int y, int color)
+int		draw_rectangle(int (*rect)[WIN_WIDTH], int x, int y, int color)
 {
 	int		i;
 	int		j;
@@ -30,7 +30,7 @@ int		draw_rectangle(int (*rect)[1000], int x, int y, int color)
 	}
 	return (0);
 }
-void	variousttest(int (*imgmem)[1000])
+void	variousttest(int (*imgmem)[WIN_WIDTH])
 {
 	imgmem[50][50] = 0x00F1FFFF;
 	plotline(imgmem, 400, 10, 130, 200);
@@ -40,6 +40,18 @@ void	variousttest(int (*imgmem)[1000])
 	plotline(imgmem, 0, 0, 300, 300);
 	plotline(imgmem, 500, 0, 0, 500);
 	plotline(imgmem, 500, 0, 0, 300);
+}
+
+void	variousttest_vec(int (*imgmem)[WIN_WIDTH])
+{
+	imgmem[50][50] = 0x00F1FFFF;
+	plotline_vec(imgmem, (t_vec2) {400, 10},(t_vec2) {130, 200});
+	plotline_vec(imgmem, (t_vec2) {20, 10}, (t_vec2) {300, 130});
+	plotline_vec(imgmem, (t_vec2) {100, 10}, (t_vec2) {300, 130});
+	plotline_vec(imgmem, (t_vec2) {100, 10}, (t_vec2) {130, 300});
+	plotline_vec(imgmem, (t_vec2) {0, 0}, (t_vec2) {300, 300});
+	plotline_vec(imgmem, (t_vec2) {500, 0}, (t_vec2) {0, 500});
+	plotline_vec(imgmem, (t_vec2) {500, 0}, (t_vec2) {0, 300});
 }
 
 

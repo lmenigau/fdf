@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/20 23:53:20 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/01/31 01:05:15 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/01/31 03:11:58 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct	s_line
 
 typedef struct	s_gstate
 {
-	int			(*imgmem)[1000];
+	int			(*imgmem)[WIN_WIDTH];
 	int			bits_per_pixel;
 	int			size_line;
 	int			endian;
@@ -60,8 +60,8 @@ typedef struct	s_gstate
 	t_list		*head;
 }				t_gstate;
 
-void			plotline(int (*img)[1000], int x0, int y0, int x1, int y1);
-void			plotline_octant(int (*img)[1000], int x0, int y0, int x1, int y1);
+void			plotline(int (*img)[WIN_WIDTH], int x0, int y0, int x1, int y1);
+void			plotline_octant(int (*img)[WIN_WIDTH], int x0, int y0, int x1, int y1);
 int				key_hook(int keycode, void *param);
 int				expose_hook(void *param);
 int				loop_hook(void *param);
@@ -69,4 +69,6 @@ int				mouse_hook(int button, int x, int y, void *param);
 int				motion_hook(int button, int x, int y, void *param);
 int				ft_abs(int n);
 
+void	plotline_octant_vec(int (*img)[WIN_WIDTH], t_vec2 p0, t_vec2 p1, int fsp);
+void	plotline_vec(int (*img)[WIN_WIDTH], t_vec2 p0, t_vec2 p1);
 #endif
