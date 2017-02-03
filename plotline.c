@@ -6,13 +6,14 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/20 23:52:30 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/02/03 15:01:02 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/02/03 18:27:35 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	plotline_octant_vec(int (*img)[WIN_WIDTH], t_vec2 p0, t_vec2 p1, int fsp)
+void	plotline_octant_vec(int (*img)[WIN_WIDTH], t_vec2 p0, t_vec2 p1,
+		int fsp)
 {
 	int		dx;
 	int		dy;
@@ -23,7 +24,7 @@ void	plotline_octant_vec(int (*img)[WIN_WIDTH], t_vec2 p0, t_vec2 p1, int fsp)
 	dx = p1.x - p0.x;
 	dy = p1.y - p0.y;
 	d = 2 * dy - dx;
-	x =	p0.x;
+	x = p0.x;
 	y = p0.y;
 	while (x < p1.x)
 	{

@@ -6,10 +6,9 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/20 23:51:35 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/02/03 18:11:25 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/02/03 18:29:47 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "fdf.h"
 
@@ -56,10 +55,9 @@ int		mouse_hook(int button, int x, int y, t_gstate *gstate)
 
 int		motion_hook(int x, int y, t_gstate *gstate)
 {
-		printf("x: %d, y: %d\n", x, y);
-		gstate->angle.z = ((float)x - WIN_WIDTH / 2) / WIN_WIDTH * 2 * M_PI;
-		gstate->angle.x = ((float)y - WIN_HEIGHT / 2) / WIN_HEIGHT *  2 *M_PI;
-		map_render(gstate->map, gstate->line_count, gstate);
-		return (0);
+	printf("x: %d, y: %d\n", x, y);
+	gstate->angle.z = ((float)x - WIN_WIDTH / 2) / WIN_WIDTH * 2 * M_PI;
+	gstate->angle.x = ((float)y - WIN_HEIGHT / 2) / WIN_HEIGHT * 2 * M_PI;
+	map_render(gstate->map, gstate->line_count, gstate);
+	return (0);
 }
-
