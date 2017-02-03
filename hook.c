@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/20 23:51:35 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/02/03 18:01:52 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/02/03 18:11:25 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,6 @@ int		key_hook(int keycode, t_gstate *gstate)
 	else if (keycode == 40)
 		gstate->zoom.z *= 0.90;
 	map_render(gstate->map, gstate->line_count, gstate);
-	return (0);
-}
-
-int		expose_hook(void *param)
-{
-	printf("log expose event\n");
-	return (0);
-}
-
-int		loop_hook(void *param)
-{
-	static int i  = 0;
-	printf("no fucking event #%dbitch\n", i);
-	i++;
 	return (0);
 }
 
