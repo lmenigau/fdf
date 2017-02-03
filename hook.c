@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/20 23:51:35 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/02/03 17:29:18 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/02/03 18:01:52 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ int		key_hook(int keycode, t_gstate *gstate)
 		gstate->tr.y -= 10;
 	else if (keycode == 126)
 		gstate->tr.y += 10;
+	else if (keycode == 38)
+		gstate->zoom.z *= 1.10;
+	else if (keycode == 40)
+		gstate->zoom.z *= 0.90;
 	map_render(gstate->map, gstate->line_count, gstate);
 	return (0);
 }
