@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 14:57:22 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/01/31 09:05:03 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/02/03 15:11:44 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,47 +74,44 @@ void	print_mat(t_m44p mat)
 
 t_vec2	point_transform(t_vec3 pt, t_m44p m)
 {
-	t_vec2	 point;
-	point.x = pt.x * m[0][0] + pt.y * m[1][0] + pt.z * m[2][0] + m[3][0];
-	point.y = pt.x * m[0][1] + pt.y * m[1][1] + pt.z * m[2][1] + m[3][1];
-
-	return point;
+	t_vec2	 res;
+	res.x = pt.x * m[0][0] + pt.y * m[1][0] + pt.z * m[2][0] + m[3][0];
+	res.y = pt.x * m[0][1] + pt.y * m[1][1] + pt.z * m[2][1] + m[3][1];
+	if (res.x < 0 || res.y < 0 || res.x > WIN_WIDTH || res.y > WIN_HEIGHT)
+		res.x = -1;
+	return res;
 }
 
-/*int		main(void)
+t_m44st	matrix_build(int line_count, int **map, t_gstate *gstate)
 {
-	t_m44p	mat;
-	t_m44p	mat2;
-	t_m44p	res;
 	t_m44	*mat_arr;
-	int		n;
 
-	n = 4;
-	mat = (t_m44){	{1, 2, 3, 4},
-					{5, 6, 7, 8},
-					{9, 10, 11, 12},
-					{13, 14, 15, 16}};
-
-	mat2 = (t_m44){	{1, 2, 3, 4},
-					{5, 6, 7, 8},
-					{9, 10, 11, 12},
-					{13, 14, 15, 16}};
-	mat_arr = (t_m44[2]){
-					{{1, 2, 3, 4},
-					{5, 6, 7, 8},
-					{9, 10, 11, 12},
-					{13, 14, 15, 16}}
-					,
-					{{1, 2, 3, 4},
-					{5, 6, 7, 8},
-					{9, 10, 11, 12},
-					{13, 14, 15, 16}}
-	};
-	res = mat_array_mult(mat_arr, 2).mat;
-	//res = mat_mult(mat, mat2).mat;
-	printf("%f\n", mat[1][1]);
-	printf("%f\n", 56546.2695);
-	printf("%f\n", mat[1][1]);
-	printf("%zu\n", sizeof(float[4][4]));
-	print_mat(res);
-}*/
+	mat_arr = (t_m44[6]){
+					{	{1, 0, 0, 0},
+						{0, 1, 0, 0},
+						{0, 0, 1, 0},
+						{-map[0][0] / 2, -line_count / 2, 0, 1}},
+					{	{gstate->zoom.x, 0, 0, 0},
+						{0,gstate->zoom.y, 0, 0},
+						{0, 0, gstate->zoom.z, 0},
+						{0, 0, 0, 1}},
+//					{	{cos(M_PI/6), 0, -sin(M_PI/6), 0},
+//						{0, 1, 0, 0},
+//						{sin(M_PI/6), 0, cos(M_PI/6), 0},
+//						{0, 0, 0, 1}},
+					{	{cos(gstate->angle.z), sin(gstate->angle.z),0, 0},
+						{-sin(gstate->angle.z), cos(gstate->angle.z),0, 0},
+						{0, 0, 1, 0},
+						{0, 0, 0, 1}},
+					{	{1, 0, 0, 0},
+						{0, cos(gstate->angle.x), -sin(gstate->angle.x), 0},
+						{0, sin(gstate->angle.x), cos(gstate->angle.x), 0},
+						{0, 0, 0, 1}},
+					{	{1, 0, 0, 0},
+						{0, 1, 0, 0},
+						{0, 0, 1, 0},
+						{WIN_WIDTH / 2 + gstate->tr.x, WIN_HEIGHT / 2 +
+							gstate->tr.y, 0, 1}}
+					};
+	return mat_array_mult(mat_arr, 5);
+}

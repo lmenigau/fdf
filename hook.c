@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/20 23:51:35 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/01/31 09:44:46 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/02/03 11:47:56 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ int		mouse_hook(int button, int x, int y, void *param)
 int		motion_hook(int x, int y, t_gstate *gstate)
 {
 		printf("x: %d, y: %d\n", x, y);
-		gstate->angle.z = ((float)x - WIN_WIDTH / 2) / WIN_WIDTH * M_PI;
-		gstate->angle.x = ((float)y - WIN_HEIGHT / 2) / WIN_HEIGHT * M_PI;
+		gstate->angle.z = ((float)x - WIN_WIDTH / 2) / WIN_WIDTH * 2 * M_PI;
+		gstate->angle.x = ((float)y - WIN_HEIGHT / 2) / WIN_HEIGHT *  2 *M_PI;
 		map_render(gstate->map, gstate->line_count, gstate);
 		return (0);
 }

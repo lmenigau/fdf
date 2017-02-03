@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/20 23:53:20 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/01/31 09:27:05 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/02/03 15:09:31 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 
 #define		WIN_WIDTH	1920
 #define		WIN_HEIGHT	1080
+
+#define		ABS(x)		((x) < 0 ? (-(x)): (x))
 
 typedef struct	s_vec2
 {
@@ -54,6 +56,8 @@ typedef struct	s_gstate
 	void		*window;
 	void		*img_ptr;
 	t_vec3		angle;
+	t_vec3		zoom;
+	t_vec2		tr;
 	int			map_size;
 	t_list		*head;
 	int			line_count;
@@ -75,4 +79,8 @@ void			plotline_octant_vec(int (*img)[WIN_WIDTH], t_vec2 p0, t_vec2 p1, int fsp)
 void			plotline_vec(int (*img)[WIN_WIDTH], t_vec2 p0, t_vec2 p1);
 t_vec2			point_transform(t_vec3 pt, t_m44p m);
 void			map_render(int **map, int line_count, t_gstate *gstate);
+t_m44st			matrix_build(int line_count, int **map, t_gstate *gstate);
+int				**flaten_list(t_list *head, int list_lenght);
+int				open_file(int argc, char **argv);
+int				load_file(t_gstate *gstate, int fd);
 #endif
