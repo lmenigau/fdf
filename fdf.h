@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/20 23:53:20 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/02/03 15:09:31 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/02/03 16:15:16 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ typedef struct	s_gstate
 
 void			plotline(int (*img)[WIN_WIDTH], int x0, int y0, int x1, int y1);
 void			plotline_octant(int (*img)[WIN_WIDTH], int x0, int y0, int x1, int y1);
-int				key_hook(int keycode, void *param);
+int				key_hook(int keycode, t_gstate *gstate);
 int				expose_hook(void *param);
 int				loop_hook(void *param);
-int				mouse_hook(int button, int x, int y, void *param);
+int				mouse_hook(int button, int x, int y, t_gstate *gstate);
 int				motion_hook(int x, int y, t_gstate *gstate);
 int				ft_abs(int n);
 

@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 03:18:19 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/02/03 15:10:18 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/02/03 17:23:05 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ int		main(int argc, char **argv)
 	fd = -1;
 	gstate.mlx_ptr = mlx_init();
 	gstate.window = mlx_new_window(gstate.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "fdf");
-	mlx_key_hook(gstate.window, key_hook, NULL);
+	mlx_do_key_autorepeaton(gstate.mlx_ptr);
+	mlx_hook(gstate.window, 2, 0, key_hook,  &gstate);
 	if ((fd = open_file(argc, argv)) == -1)
 		return (0);;
 	gstate.angle = (t_vec3) {0, 0, 0};
@@ -94,7 +95,7 @@ int		main(int argc, char **argv)
 	gstate.zoom = (t_vec3) {WIN_HEIGHT/(float)gstate.line_count,
 		WIN_HEIGHT/(float)gstate.line_count, 200 /(float)gstate.line_count };
 	map_render(gstate.map, gstate.line_count, &gstate);
-	mlx_mouse_hook(gstate.window, mouse_hook, NULL);
+	mlx_mouse_hook(gstate.window, mouse_hook, &gstate);
 	mlx_hook(gstate.window, 6, 0, motion_hook, &gstate);
 	mlx_loop(gstate.mlx_ptr);
 	return (0);
