@@ -6,14 +6,11 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 14:57:22 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/02/06 11:33:26 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/02/06 11:41:56 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 t_m44st	mat_mult(t_m44p l, t_m44p r)
 {
@@ -51,25 +48,6 @@ t_m44st	mat_array_mult(t_m44 *mat_array, int length)
 		i++;
 	}
 	return (acc);
-}
-
-void	print_mat(t_m44p mat)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	while (i < 4)
-	{
-		j = 0;
-		while (j < 4)
-		{
-			printf("%4.2f ", mat[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
 }
 
 t_vec2	point_transform(t_vec3 pt, t_m44p m)

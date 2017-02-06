@@ -6,7 +6,7 @@
 #*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/18 02:18:30 by lmenigau          #+#    #+#             *#
-#*   Updated: 2017/02/06 11:32:56 by lmenigau         ###   ########.fr       *#
+#*   Updated: 2017/02/06 11:40:34 by lmenigau         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -14,7 +14,7 @@ NAME	= fdf
 SRC		= fdf.c get_next_line.c hook.c plotline.c matrix.c parsing.c
 OBJ		= $(SRC:.c=.o)
 CFLAGS	= -Wall -Wextra -Werror -Ilibft/
-LFLAGS	= -lft -lmlx  -framework OpenGl -framework Appkit
+LFLAGS	= -lft -lmlx -lm -framework OpenGl -framework Appkit
 LDFLAGS	= -Llibft/
 LIBDIR	= libft/
 LIB		:= $(LIBDIR)/libft.a
