@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/20 23:51:35 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/02/06 10:14:05 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/02/06 11:27:43 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int		key_hook(int keycode, t_gstate *gstate)
 {
-	printf("key:%d\n", keycode);
 	mlx_do_key_autorepeaton(gstate->mlx_ptr);
 	if (keycode == 53)
 		exit(0);
@@ -36,7 +35,8 @@ int		key_hook(int keycode, t_gstate *gstate)
 
 int		mouse_hook(int button, int x, int y, t_gstate *gstate)
 {
-	printf("button: %d, x: %d, y: %d\n", button, x, y);
+	(void)x;
+	(void)y;
 	if (button == 5)
 	{
 		gstate->zoom.x *= 1.10;
@@ -55,7 +55,6 @@ int		mouse_hook(int button, int x, int y, t_gstate *gstate)
 
 int		motion_hook(int x, int y, t_gstate *gstate)
 {
-	printf("x: %d, y: %d\n", x, y);
 	gstate->angle.z = ((float)x - WIN_WIDTH / 2) / WIN_WIDTH * 2 * M_PI;
 	gstate->angle.x = ((float)y - WIN_HEIGHT / 2) / WIN_HEIGHT * 2 * M_PI;
 	map_render(gstate->map, gstate->line_count, gstate);

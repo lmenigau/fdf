@@ -6,12 +6,12 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/27 08:22:22 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/01/31 03:14:38 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/02/06 11:23:39 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
+#include <stdio.h>
 int		draw_rectangle(int (*rect)[WIN_WIDTH], int x, int y, int color)
 {
 	int		i;
@@ -60,3 +60,23 @@ void	debugtest(t_gstate *gstate)
 	printf("%d\n", gstate->size_line);
 	variousttest(gstate->imgmem);
 }
+
+void	print_map(int **map, int line_count)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < line_count)
+	{
+		j = 0;
+		while (j < map[i][0])
+		{
+			printf("%3d", map[i][j]);
+			j++;
+		}
+		i++;
+		printf("\n");
+	}
+}
+

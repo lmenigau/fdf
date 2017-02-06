@@ -6,14 +6,13 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/20 23:53:20 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/02/03 18:33:36 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/02/06 11:22:06 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include <stdio.h>
 # include <fcntl.h>
 # include <mlx.h>
 # include <stdlib.h>

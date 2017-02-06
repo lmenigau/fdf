@@ -6,30 +6,11 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 03:18:19 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/02/06 09:56:51 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/02/06 11:23:15 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	print_map(int **map, int line_count)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	while (i < line_count)
-	{
-		j = 0;
-		while (j < map[i][0])
-		{
-			printf("%3d", map[i][j]);
-			j++;
-		}
-		i++;
-		printf("\n");
-	}
-}
 
 void	map_proj(int **map, int line_count, t_gstate *gstate, t_m44p matrix)
 {

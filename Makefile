@@ -6,14 +6,14 @@
 #*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/18 02:18:30 by lmenigau          #+#    #+#             *#
-#*   Updated: 2017/02/06 09:30:49 by lmenigau         ###   ########.fr       *#
+#*   Updated: 2017/02/06 11:22:25 by lmenigau         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
 NAME	= fdf
 SRC		= fdf.c get_next_line.c hook.c plotline.c matrix.c parsing.c
 OBJ		= $(SRC:.c=.o)
-CFLAGS	= -Wall -Wextra -Ilibft/
+CFLAGS	= -Wall -Wextra -Werror -Ilibft/
 CFLAGS	+= -g
 LFLAGS	= -lft -lmlx  -framework OpenGl -framework Appkit
 LDFLAGS	= -Llibft/
