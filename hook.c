@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/20 23:51:35 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/02/03 18:29:47 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/02/06 10:14:05 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ int		key_hook(int keycode, t_gstate *gstate)
 	if (keycode == 53)
 		exit(0);
 	if (keycode == 123)
-		gstate->tr.x += 10;
-	else if (keycode == 124)
 		gstate->tr.x -= 10;
+	else if (keycode == 124)
+		gstate->tr.x += 10;
 	else if (keycode == 125)
-		gstate->tr.y -= 10;
-	else if (keycode == 126)
 		gstate->tr.y += 10;
+	else if (keycode == 126)
+		gstate->tr.y -= 10;
 	else if (keycode == 38)
 		gstate->zoom.z *= 1.10;
 	else if (keycode == 40)
