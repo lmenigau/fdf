@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 14:57:22 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/02/06 09:56:30 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/02/06 11:33:26 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ t_m44st	matrix_build(int line_count, int **map, t_gstate *gstate)
 					{	{1, 0, 0, 0},
 						{0, 1, 0, 0},
 						{0, 0, 1, 0},
-						{WIN_WIDTH / (float)2 + gstate->tr.x, WIN_HEIGHT / (float)2 +
-							gstate->tr.y, 0, 1}}};
+						{WIN_WIDTH / (float)2 + gstate->tr.x,
+							WIN_HEIGHT / (float)2 + gstate->tr.y, 0, 1}}};
 	return (mat_array_mult(mat_arr, 5));
 }
