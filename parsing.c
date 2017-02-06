@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 15:06:01 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/02/03 18:30:30 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/02/06 09:19:19 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,16 @@ int		open_file(int argc, char **argv)
 	int		fd;
 
 	if (argc < 2)
+	{
+		ft_putstr("Usage : ./fdf map.fdf\n");
 		return (-1);
+	}
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
+	{
+		ft_putstr("error : cannot open this file\n");
 		return (-1);
+	}
 	return (fd);
 }
 
