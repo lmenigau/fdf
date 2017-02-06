@@ -6,7 +6,7 @@
 /*   By: lmenigau <lmenigau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 03:18:19 by lmenigau          #+#    #+#             */
-/*   Updated: 2017/02/06 11:23:15 by lmenigau         ###   ########.fr       */
+/*   Updated: 2017/02/06 12:14:29 by lmenigau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,21 @@ int		main(int argc, char **argv)
 
 	if ((fd = open_file(argc, argv)) == -1)
 		return (0);
+	gstate.angle = (t_vec3) {0, 0, 0};
+	gstate.tr = (t_vec2) {0, 0};
+	if ((gstate.line_count = load_file(&gstate, fd)) == 0)
+	{
+		ft_putstr("empty file\n");
+		return (0);
+	}
+	gstate.map = flaten_list(gstate.head, gstate.line_count);
+	gstate.zoom = (t_vec3) {WIN_HEIGHT / (float)gstate.line_count,
+		WIN_HEIGHT / (float)gstate.line_count, 200 / (float)gstate.line_count };
 	gstate.mlx_ptr = mlx_init();
 	gstate.window = mlx_new_window(gstate.mlx_ptr, WIN_WIDTH, WIN_HEIGHT,
 			"fdf");
 	mlx_do_key_autorepeaton(gstate.mlx_ptr);
 	mlx_hook(gstate.window, 2, 0, key_hook, &gstate);
-	gstate.angle = (t_vec3) {0, 0, 0};
-	gstate.tr = (t_vec2) {0, 0};
-	gstate.line_count = load_file(&gstate, fd);
-	gstate.map = flaten_list(gstate.head, gstate.line_count);
-	gstate.zoom = (t_vec3) {WIN_HEIGHT / (float)gstate.line_count,
-		WIN_HEIGHT / (float)gstate.line_count, 200 / (float)gstate.line_count };
 	map_render(gstate.map, gstate.line_count, &gstate);
 	mlx_mouse_hook(gstate.window, mouse_hook, &gstate);
 	mlx_hook(gstate.window, 6, 0, motion_hook, &gstate);
